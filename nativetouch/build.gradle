@@ -1,0 +1,64 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 27
+
+
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    //implementation fileTree(include: ['*.jar'], dir: 'libs')
+    compileOnly files('./libs/unityclasses.jar')
+    // Avoid redundant Unity Player in final application APK
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+android.libraryVariants.all { variant ->
+    // Task names.
+    String variantName = "${variant.name.capitalize()}"; // Like 'Debug'
+    String deployTaskGroup = "plugin";
+    String deployTaskName = "deploy${variantName}PluginArchive"; // Like 'deployDebugPluginArchive'
+    String dependencyTaskName = "assemble${variantName}"; // Like 'assembleDebug'
+    // Source.
+    String sourceAARFolder = "${buildDir.getPath()}/outputs/aar/";
+    String sourceAARName = "${project.name}-${variant.name}.aar";
+    // Target.
+
+    //You can put your own output folder here
+    String targetAARFolder = "/Users/Sargon/Documents/Projects/NativeTouch/Assets/NativeTouch/Plugins/Android";
+    String targetAARName = "NativeTouch.aar"; // The form you ship your plugin
+
+    // Create task.
+    task(deployTaskName, dependsOn: dependencyTaskName, type: Copy) {
+        from(sourceAARFolder)
+        into(targetAARFolder)
+        include(sourceAARName)
+        rename(sourceAARName, targetAARName)
+    }.group = deployTaskGroup;
+}
