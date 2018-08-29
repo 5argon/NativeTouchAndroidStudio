@@ -18,6 +18,9 @@ public class NativeTouchActivity extends UnityPlayerActivity {
 
     // If you have an other custom activity and want to merge with Native Touch's function, you can copy all these to that.
 
+
+    // The original UnityPlayerActivity does not have a `dispatchTouchEvent` override
+    // So we are still completely "plug-in" at this point.
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         //Log.i("DISPATCH ", event.getX() + " " + event.getY() + " " + String.valueOf(event.getEventTime()));
@@ -33,6 +36,13 @@ public class NativeTouchActivity extends UnityPlayerActivity {
             boolean downAction = act == MotionEvent.ACTION_DOWN || act == MotionEvent.ACTION_POINTER_DOWN;
             boolean upAction = act == MotionEvent.ACTION_UP || act == MotionEvent.ACTION_POINTER_UP;
             boolean moveAction = act == MotionEvent.ACTION_MOVE;
+
+
+            //Determine the callback type from the "main" action. Used with every touches in this MotionEvent.
+            int callbackType = 4; //cancelled
+            if(downAction) { callbackType = 0; }
+            else if(upAction) { callbackType = 3; }
+            else if(moveAction) { callbackType = 1; }
 
             for (int i = 0; i < pointerCount; i++) {
 
@@ -78,7 +88,7 @@ public class NativeTouchActivity extends UnityPlayerActivity {
 
                 if(isMinimalMode) {
                     //If minimal mode we can start sending now!
-                    storedDelegate.NativeTouchMinimalDelegate(x, y, phase, timestamp, pointerId);
+                    storedDelegate.NativeTouchMinimalDelegate(callbackType ,x, y, phase, timestamp, pointerId);
                 }
                 else
                 {
@@ -88,7 +98,7 @@ public class NativeTouchActivity extends UnityPlayerActivity {
                     float size = event.getSize(i);
                     float touchMajor = event.getTouchMajor(i);
                     float touchMinor = event.getTouchMinor(i);
-                    storedDelegate.NativeTouchRawDelegate(x,y,phase, timestamp, pointerId,
+                    storedDelegate.NativeTouchRawDelegate(callbackType, x,y,phase, timestamp, pointerId,
                             orientation, pressure, size, touchMajor, touchMinor);
                 }
             }
@@ -116,8 +126,8 @@ public class NativeTouchActivity extends UnityPlayerActivity {
     }
 
     public interface TouchDelegate {
-        void NativeTouchMinimalDelegate(float x, float y, int phase, long timestamp, int pointerId);
-        void NativeTouchRawDelegate(float x, float y,  int phase, long timestamp, int pointerId,
+        void NativeTouchMinimalDelegate(int callbackType, float x, float y, int phase, long timestamp, int pointerId);
+        void NativeTouchRawDelegate(int callbackType, float x, float y,  int phase, long timestamp, int pointerId,
                                     float orientation, float pressure,float size, float touchMajor, float touchMinor);
     }
 
