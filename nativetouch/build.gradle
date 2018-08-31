@@ -3,8 +3,6 @@ apply plugin: 'com.android.library'
 android {
     compileSdkVersion 27
 
-
-
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 27
@@ -25,36 +23,24 @@ android {
 }
 
 dependencies {
-    //implementation fileTree(include: ['*.jar'], dir: 'libs')
+    // Avoid redundant UnityPlayer in final application APK
     compileOnly files('./libs/unityclasses.jar')
-    // Avoid redundant Unity Player in final application APK
-}
-
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
 
 android.libraryVariants.all { variant ->
-    // Task names.
-    String variantName = "${variant.name.capitalize()}"; // Like 'Debug'
+    String variantName = "${variant.name.capitalize()}";
     String deployTaskGroup = "plugin";
-    String deployTaskName = "deploy${variantName}PluginArchive"; // Like 'deployDebugPluginArchive'
-    String dependencyTaskName = "assemble${variantName}"; // Like 'assembleDebug'
-    // Source.
+    String deployTaskName = "deploy${variantName}PluginArchive"; //variantName like "Debug"
+    String dependencyTaskName = "assemble${variantName}";
+
     String sourceAARFolder = "${buildDir.getPath()}/outputs/aar/";
     String sourceAARName = "${project.name}-${variant.name}.aar";
-    // Target.
 
-    //You can put your own output folder here
+    //This is my computer but if you wanna use this Gradle script too you can edit the path here
+    //so that it output straight to your Unity project.
     String targetAARFolder = "/Users/Sargon/Documents/Projects/NativeTouch/Assets/NativeTouch/Plugins/Android";
-    String targetAARName = "NativeTouch.aar"; // The form you ship your plugin
+    String targetAARName = "NativeTouch.aar";
 
-    // Create task.
     task(deployTaskName, dependsOn: dependencyTaskName, type: Copy) {
         from(sourceAARFolder)
         into(targetAARFolder)

@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.exceed7.nativetouch">
+    package="com.exceed7.myapplication">
 
     <application
         android:allowBackup="true"
