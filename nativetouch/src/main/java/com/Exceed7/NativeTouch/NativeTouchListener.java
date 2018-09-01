@@ -15,10 +15,9 @@ public class NativeTouchListener {
             //Log.i("DISPATCH ", event.getX() + " " + event.getY() + " " + String.valueOf(event.getEventTime()));
 
             //Report the same timestamp for all touch even if they move or not.
-            long timestamp = AndroidTouchTime();
+            double timestamp = (double)AndroidTouchTime();
 
             //MotionEvent might contains multiple touch data. We will callback once for each.
-            if (storedDelegate != null) {
 
                 int pointerCount = event.getPointerCount();
                 int act = event.getActionMasked();
@@ -69,7 +68,7 @@ public class NativeTouchListener {
 
                     if (isMinimalMode) {
                         //If minimal mode we can start sending now!
-                        storedDelegate.NativeTouchMinimalDelegate(callbackType, x, y, phase, timestamp, pointerId);
+                        sendTouchMinimal(callbackType, x, y, phase, timestamp, pointerId);
                     } else {
                         //Get more..
                         float orientation = event.getOrientation(i);
@@ -77,11 +76,10 @@ public class NativeTouchListener {
                         float size = event.getSize(i);
                         float touchMajor = event.getTouchMajor(i);
                         float touchMinor = event.getTouchMinor(i);
-                        storedDelegate.NativeTouchRawDelegate(callbackType, x, y, phase, timestamp, pointerId,
+                        sendTouchFull(callbackType, x, y, phase, timestamp, pointerId,
                                 orientation, pressure, size, touchMajor, touchMinor);
                     }
                 }
-            }
 
             if (!isDisableUnityTouch) {
                 //Unity input still works
@@ -92,7 +90,6 @@ public class NativeTouchListener {
 
     };
 
-    private static TouchDelegate storedDelegate;
     private static boolean isMinimalMode;
     private static boolean isDisableUnityTouch;
 
@@ -102,22 +99,11 @@ public class NativeTouchListener {
         UnityPlayer.currentActivity.getCurrentFocus().setOnTouchListener(null);
     }
 
-    // There should be only one static delegate waiting at Unity side. From there we can call multiple static callbacks.
-    public static void RegisterTouchDelegate(TouchDelegate td, boolean minimal, boolean disableUnityTouch) {
+    public static void StartNativeTouch(boolean fullMode, boolean disableUnityTouch) {
         //Log.i("Android Native Touch","Registered");
-        storedDelegate = td;
-        isMinimalMode = minimal;
+        isMinimalMode = !fullMode;
         isDisableUnityTouch = disableUnityTouch;
         UnityPlayer.currentActivity.getCurrentFocus().setOnTouchListener(nativeTouchListener);
-
-        //Warm up
-        storedDelegate.NativeTouchMinimalDelegate(-1,-1,-1,-1,-1,-1);
-    }
-
-    public interface TouchDelegate {
-        void NativeTouchMinimalDelegate(int callbackType, float x, float y, int phase, long timestamp, int pointerId);
-        void NativeTouchRawDelegate(int callbackType, float x, float y,  int phase, long timestamp, int pointerId,
-                                    float orientation, float pressure,float size, float touchMajor, float touchMinor);
     }
 
     public static long AndroidTouchTime()
@@ -125,8 +111,8 @@ public class NativeTouchListener {
         return SystemClock.uptimeMillis();
     }
 
-    public static native void sendTouchMinimal(int callbackType, float x, float y, int phase, long timestamp, int pointerId);
-    public static native void sendTouchFull(int callbackType, float x, float y,  int phase, long timestamp, int pointerId,
+    public static native void sendTouchMinimal(int callbackType, float x, float y, int phase, double timestamp, int pointerId);
+    public static native void sendTouchFull(int callbackType, float x, float y,  int phase, double timestamp, int pointerId,
                                             float orientation, float pressure,float size, float touchMajor, float touchMinor);
 
 }
