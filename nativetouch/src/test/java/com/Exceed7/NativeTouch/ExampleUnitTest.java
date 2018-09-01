@@ -1,4 +1,4 @@
-package com.exceed7.nativetouch;
+package com.Exceed7.NativeTouch;
 
 import org.junit.Test;
 

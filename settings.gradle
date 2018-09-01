@@ -1,1 +1,1 @@
-include ':nativetouch', ':mylibrary', ':myapplication'
+include ':nativetouch'

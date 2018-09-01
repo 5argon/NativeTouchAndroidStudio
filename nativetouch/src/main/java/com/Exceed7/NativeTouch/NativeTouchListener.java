@@ -1,21 +1,10 @@
-package com.exceed7.nativetouch;
+package com.Exceed7.NativeTouch;
 
 import com.unity3d.player.*;
-import android.app.Activity;
-import android.app.Application;
-import android.content.Intent;
-import android.content.res.Configuration;
-import android.graphics.PixelFormat;
-import android.os.Bundle;
+
 import android.os.SystemClock;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-
-import java.lang.annotation.Native;
 
 public class NativeTouchListener {
 
@@ -120,6 +109,9 @@ public class NativeTouchListener {
         isMinimalMode = minimal;
         isDisableUnityTouch = disableUnityTouch;
         UnityPlayer.currentActivity.getCurrentFocus().setOnTouchListener(nativeTouchListener);
+
+        //Warm up
+        storedDelegate.NativeTouchMinimalDelegate(-1,-1,-1,-1,-1,-1);
     }
 
     public interface TouchDelegate {
@@ -132,4 +124,9 @@ public class NativeTouchListener {
     {
         return SystemClock.uptimeMillis();
     }
+
+    public static native void sendTouchMinimal(int callbackType, float x, float y, int phase, long timestamp, int pointerId);
+    public static native void sendTouchFull(int callbackType, float x, float y,  int phase, long timestamp, int pointerId,
+                                            float orientation, float pressure,float size, float touchMajor, float touchMinor);
+
 }
