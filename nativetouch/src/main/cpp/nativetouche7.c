@@ -3,16 +3,11 @@
 //
 
 // Cannot do extern in Unity if this is .cpp file lol why
+// Note : Using AndroidJavaProxy to talk back to Unity is not thread safe and will randomly cause SIGSEGV 11.
+// when triggered from other thread like Android's touch.
+// Using native delegate like you see here is safe.
 
-#include <stdlib.h>
-#include <assert.h>
 #include <jni.h>
-#include <string.h>
-#include <pthread.h>
-#include <math.h>
-
-// For logging
-#include <android/log.h>
 
 typedef struct
 {
@@ -24,6 +19,7 @@ typedef struct
     int phase;
     double timestamp;
     int pointerId;
+    int nativelyGenerated;
 } NativeTouchData;
 
 typedef struct
@@ -36,6 +32,7 @@ typedef struct
     int phase;
     double timestamp;
     int pointerId;
+    int nativelyGenerated;
 
     //-- Full mode only structs --
 
@@ -74,6 +71,7 @@ void Java_com_Exceed7_NativeTouch_NativeTouchListener_sendTouchMinimal(JNIEnv *e
     ntd.phase = phase;
     ntd.timestamp = timestamp;
     ntd.pointerId = pointerId;
+    ntd.nativelyGenerated = 1;
 
     minimalCallback(ntd);
 }
@@ -92,6 +90,7 @@ void Java_com_Exceed7_NativeTouch_NativeTouchListener_sendTouchFull(JNIEnv *env,
     ntd.phase = phase;
     ntd.timestamp = timestamp;
     ntd.pointerId = pointerId;
+    ntd.nativelyGenerated = 1;
 
     ntd.tapCount = -1; //no use on android
     ntd.type = -1; //no use on android
