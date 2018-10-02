@@ -3,6 +3,7 @@ package com.Exceed7.NativeTouch;
 import com.unity3d.player.*;
 
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -11,8 +12,8 @@ public class NativeTouchListener {
     static View.OnTouchListener nativeTouchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View view, MotionEvent event) {
-            //public boolean dispatchTouchEvent(MotionEvent event) {
-            //Log.i("DISPATCH ", event.getX() + " " + event.getY() + " " + String.valueOf(event.getEventTime()));
+            //Log.i("DISPATCH ", event.getX() + " " + event.getY() + " Time : " + String.valueOf(event.getEventTime()) +
+            //" Action : " + event.getActionMasked() + " Pointer count : " + event.getPointerCount());
 
             //Report the same timestamp for all touch even if they move or not.
             double timestamp = (double)AndroidTouchTime();
@@ -24,6 +25,7 @@ public class NativeTouchListener {
                 boolean downAction = act == MotionEvent.ACTION_DOWN || act == MotionEvent.ACTION_POINTER_DOWN;
                 boolean upAction = act == MotionEvent.ACTION_UP || act == MotionEvent.ACTION_POINTER_UP;
                 boolean moveAction = act == MotionEvent.ACTION_MOVE;
+                boolean cancelledAction = act == MotionEvent.ACTION_CANCEL;
 
                 //Determine the callback type from the "main" action. Used with every touches in this MotionEvent.
                 int callbackType = 4; //cancelled
@@ -35,39 +37,31 @@ public class NativeTouchListener {
                     callbackType = 1;
                 }
 
+                int pointerIdOfAction = event.getPointerId(event.getActionIndex());
                 for (int i = 0; i < pointerCount; i++) {
-
                     int pointerId = event.getPointerId(i);
-                    int pointerIdOfAction;
-                    if (pointerCount > 1) {
-                        pointerIdOfAction = event.getActionIndex();
-                    } else {
-                        pointerIdOfAction = pointerId;
-                    }
-
-                    boolean actionOccurOnThisPointer;
-                    if (pointerCount > 1) {
-                        actionOccurOnThisPointer = pointerIdOfAction == pointerId;
-                    } else {
-                        actionOccurOnThisPointer = true;
-                    }
+                    boolean actionOccurOnThisPointer = pointerIdOfAction == pointerId;
 
                     float x = event.getX(i);
                     float y = event.getY(i);
-                    int phase = 4; //If ACTION_CANCELLED it will not match on any ifs below, we return CANCELLED phase which is 3 in Android but 4 in Unity.
+                    int phase = 4;
                     if (downAction && actionOccurOnThisPointer) {
                         phase = MotionEvent.ACTION_DOWN;
                     } else if (upAction && actionOccurOnThisPointer) {
                         phase = 3; //MotionEvent.ACTION_UP; //UP is 1 in Android but in Unity it's 3
-                    } else if (!actionOccurOnThisPointer || moveAction) {
+                    } else if (cancelledAction) {
+                        // Cancelled action will put all touches in the pack as Cancelled.
+                        // Does not care about whether if the action is on this touch or not.
+                        phase = 4;
+                    }else if (!actionOccurOnThisPointer || moveAction) {
                         //If action is not on this pointer we are not sure the others move or stay still. We always say move.
                         //If it is move action then also we don't know which one move or stay still. We always say move.
-
                         phase = 1; //MotionEvent.ACTION_MOVE; //MOVE is 2 in Android but in Unity it's 1
                     }
 
                     if (isMinimalMode) {
                         //If minimal mode we can start sending now!
+                        //Log.i("EACH", x + " " + y + " Action? " + actionOccurOnThisPointer + " ("+ pointerIdOfAction +") ID " + pointerId );
                         sendTouchMinimal(callbackType, x, y, phase, timestamp, pointerId);
                     } else {
                         //Get more..
