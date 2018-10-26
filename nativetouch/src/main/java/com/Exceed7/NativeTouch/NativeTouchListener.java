@@ -100,6 +100,16 @@ public class NativeTouchListener {
         UnityPlayer.currentActivity.getCurrentFocus().setOnTouchListener(nativeTouchListener);
     }
 
+    public static int RealScreenHeight()
+    {
+        return UnityPlayer.currentActivity.getCurrentFocus().getHeight();
+    }
+
+    public static int RealScreenWidth()
+    {
+        return UnityPlayer.currentActivity.getCurrentFocus().getWidth();
+    }
+
     public static long AndroidTouchTime()
     {
         return SystemClock.uptimeMillis();
