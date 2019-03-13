@@ -88,8 +88,8 @@ public class NativeTouchListener {
                 }
 
                 if (isMinimalMode) {
-                    //Log.i("EACH", x + " " + y + " Action? " + actionOccurOnThisPointer + " ("+ pointerIdOfAction +") ID " + pointerId );
                     //Writes the touch to ring buffer, and advance the ring buffer pointer.
+                    //Log.i("Writing Touch", x + " " + y + " Action? " + actionOccurOnThisPointer + " ("+ pointerIdOfAction +") ID " + pointerId );
                     writeTouchMinimal(callbackType, x, y, phase, listenerTimestamp, pointerId);
                 } else {
                     //Get more..
