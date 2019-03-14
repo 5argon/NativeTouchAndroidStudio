@@ -159,16 +159,9 @@ public class NativeTouchListener {
     }
 
     //This probably has no use, but may be handy for debugging here and also from Unity.
-    public static long ElapsedRealtimeNanos() {
-        return SystemClock.elapsedRealtimeNanos();
-    }
-
-    public static native void dispose();
-
-    public static native void sendTouchMinimal(int callbackType, float x, float y, int phase, double timestamp, int pointerId);
-
-    public static native void sendTouchFull(int callbackType, float x, float y, int phase, double timestamp, int pointerId,
-                                            float orientation, float pressure, float size, float touchMajor, float touchMinor);
+    //public static long ElapsedRealtimeNanos() {
+        //return SystemClock.elapsedRealtimeNanos();
+    //}
 
     public static native void startTouches();
 
