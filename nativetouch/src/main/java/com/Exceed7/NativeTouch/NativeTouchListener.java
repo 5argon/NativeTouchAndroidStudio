@@ -18,7 +18,7 @@ public class NativeTouchListener {
 
             startTouches();
 
-            Log.i("DISPATCH ", event.getX() + " " + event.getY() + " Android Touch Time : " + String.valueOf(listenerTimestamp) + " Time : " + String.valueOf(event.getEventTime()) + " Action : " + event.getActionMasked() + " Pointer count : " + event.getPointerCount());
+            //Log.i("DISPATCH ", event.getX() + " " + event.getY() + " Android Touch Time : " + String.valueOf(listenerTimestamp) + " Time : " + String.valueOf(event.getEventTime()) + " Action : " + event.getActionMasked() + " Pointer count : " + event.getPointerCount());
 
             //One `MotionEvent` contains multiple touch data. We will peel them out and write to ring buffer, then told C# to check them.
 
@@ -110,7 +110,7 @@ public class NativeTouchListener {
             //Those spots are a parameter of that invoke.
 
             //If we are in no callback mode, we rely on C# to manually read out the ring buffer without telling it now.
-            if(isNoCallback == false) {
+            if(!isNoCallback) {
                 if (isMinimalMode) {
                     commitTouchesMinimal();
                 } else {
@@ -159,16 +159,9 @@ public class NativeTouchListener {
     }
 
     //This probably has no use, but may be handy for debugging here and also from Unity.
-    public static long ElapsedRealtimeNanos() {
-        return SystemClock.elapsedRealtimeNanos();
-    }
-
-    public static native void dispose();
-
-    public static native void sendTouchMinimal(int callbackType, float x, float y, int phase, double timestamp, int pointerId);
-
-    public static native void sendTouchFull(int callbackType, float x, float y, int phase, double timestamp, int pointerId,
-                                            float orientation, float pressure, float size, float touchMajor, float touchMinor);
+    //public static long ElapsedRealtimeNanos() {
+        //return SystemClock.elapsedRealtimeNanos();
+    //}
 
     public static native void startTouches();
 
