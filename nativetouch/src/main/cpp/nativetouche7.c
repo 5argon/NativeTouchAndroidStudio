@@ -90,6 +90,8 @@ void registerCallbacksCheckRingBuffer(
 {
     //You could increase the ring buffer size from a `const` in C#. It would be synchronized to here.
     ringBufferSize = ringBufferSizeFromCSharp;
+    ringBufferIndex = 0;
+    ringBufferCurrentCount = 0;
 
     fullCallbackCheckRingBuffer = fullDelegate;
     minimalCallbackCheckRingBuffer = minimalDelegate;
