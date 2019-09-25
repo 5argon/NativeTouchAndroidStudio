@@ -1,0 +1,70 @@
+{
+  "variant": {
+    "module": {
+      "rootBuildGradleFolder": "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio",
+      "sdkFolder": "/Applications/Unity/Hub/2019.1.14f1/PlaybackEngines/AndroidPlayer/SDK",
+      "isNativeCompilerSettingsCacheEnabled": false,
+      "isBuildOnlyTargetAbiEnabled": true,
+      "splitsAbiFilterSet": [],
+      "intermediatesFolder": "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/build/intermediates",
+      "gradleModulePathName": ":nativetouch",
+      "moduleRootFolder": "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch",
+      "makeFile": "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/src/main/cpp/CMakeLists.txt",
+      "buildSystem": "CMAKE",
+      "compilerSettingsCacheFolder": "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/.cxx",
+      "cxxFolder": "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/.cxx",
+      "ndkFolder": "/Applications/Unity/Hub/2019.1.14f1/PlaybackEngines/AndroidPlayer/SDK/ndk-bundle",
+      "ndkVersion": "20.0.5594570",
+      "ndkSupportedAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "ndkDefaultAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "cmakeToolchainFile": "."
+    },
+    "buildSystemArgumentList": [],
+    "cFlagList": [],
+    "cppFlagsList": [],
+    "variantName": "armRelease",
+    "soFolder": "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/build/intermediates/cmake/armRelease/lib",
+    "objFolder": "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/build/intermediates/cmake/armRelease/obj",
+    "jsonFolder": "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/.cxx/cmake/armRelease",
+    "gradleBuildOutputFolder": "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/.cxx/cxx/armRelease",
+    "isDebuggableEnabled": false,
+    "validAbiList": [
+      "ARMEABI_V7A",
+      "ARM64_V8A",
+      "X86",
+      "X86_64"
+    ],
+    "buildTargetSet": []
+  },
+  "abi": "X86_64",
+  "abiPlatformVersion": 16,
+  "cxxBuildFolder": "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/.cxx/cmake/armRelease/x86_64",
+  "jsonFile": "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/.cxx/cmake/armRelease/x86_64/android_gradle_build.json",
+  "gradleBuildOutputFolder": "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/.cxx/cxx/armRelease/x86_64",
+  "objFolder": "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/build/intermediates/cmake/armRelease/obj/x86_64",
+  "buildCommandFile": "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/.cxx/cmake/armRelease/x86_64/build_command.txt",
+  "buildOutputFile": "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/.cxx/cmake/armRelease/x86_64/build_output.txt",
+  "modelOutputFile": "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/.cxx/cmake/armRelease/x86_64/build_model.json",
+  "cmake": {
+    "cmakeListsWrapperFile": "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/.cxx/cxx/armRelease/x86_64/CMakeLists.txt",
+    "toolchainWrapperFile": "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/.cxx/cxx/armRelease/x86_64/android_gradle_build.toolchain.cmake",
+    "buildGenerationStateFile": "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/.cxx/cxx/armRelease/x86_64/build_generation_state.json",
+    "cacheKeyFile": "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/.cxx/cxx/armRelease/x86_64/compiler_cache_key.json",
+    "compilerCacheUseFile": "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/.cxx/cxx/armRelease/x86_64/compiler_cache_use.json",
+    "compilerCacheWriteFile": "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/.cxx/cxx/armRelease/x86_64/compiler_cache_write.json",
+    "toolchainSettingsFromCacheFile": "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/.cxx/cxx/armRelease/x86_64/compiler_settings_cache.cmake",
+    "cmakeWrappingBaseFolder": "."
+  },
+  "jsonGenerationLoggingRecordFile": "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/.cxx/cmake/armRelease/x86_64/json_generation_record.json",
+  "compileCommandsJsonFile": "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/.cxx/cmake/armRelease/x86_64/compile_commands.json"
+}

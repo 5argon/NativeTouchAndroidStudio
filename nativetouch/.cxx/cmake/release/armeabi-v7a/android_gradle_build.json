@@ -1,0 +1,41 @@
+
+{
+	"buildFiles" : 
+	[
+		"/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/src/main/cpp/CMakeLists.txt"
+	],
+	"cFileExtensions" : [ "c" ],
+	"cleanCommands" : 
+	[
+		"/Applications/Unity/Hub/2019.1.14f1/PlaybackEngines/AndroidPlayer/SDK/cmake/3.6.4111459/bin/cmake --build /Users/Sargon/Documents/Unity\\ Projects/Asset\\ Store/NativeTouchAndroidStudio/nativetouch/.cxx/cmake/release/armeabi-v7a --target clean"
+	],
+	"libraries" : 
+	{
+		"nativetouche7-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "nativetouche7",
+			"buildCommand" : "/Applications/Unity/Hub/2019.1.14f1/PlaybackEngines/AndroidPlayer/SDK/cmake/3.6.4111459/bin/cmake --build /Users/Sargon/Documents/Unity\\ Projects/Asset\\ Store/NativeTouchAndroidStudio/nativetouch/.cxx/cmake/release/armeabi-v7a --target nativetouche7",
+			"buildType" : "release",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi16 --gcc-toolchain=/Applications/Unity/Hub/2019.1.14f1/PlaybackEngines/AndroidPlayer/SDK/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Applications/Unity/Hub/2019.1.14f1/PlaybackEngines/AndroidPlayer/SDK/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -Dnativetouche7_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -std=c99 -Wall -Oz -DNDEBUG  -fPIC      -c ",
+					"src" : "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/src/main/cpp/nativetouche7.c",
+					"workingDirectory" : "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/.cxx/cmake/release/armeabi-v7a"
+				}
+			],
+			"output" : "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/build/intermediates/cmake/release/obj/armeabi-v7a/libnativetouche7.so",
+			"toolchain" : "10623350504411424777"
+		}
+	},
+	"toolchains" : 
+	{
+		"10623350504411424777" : 
+		{
+			"cCompilerExecutable" : "/Applications/Unity/Hub/2019.1.14f1/PlaybackEngines/AndroidPlayer/SDK/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang",
+			"cppCompilerExecutable" : "/Applications/Unity/Hub/2019.1.14f1/PlaybackEngines/AndroidPlayer/SDK/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++"
+		}
+	}
+}

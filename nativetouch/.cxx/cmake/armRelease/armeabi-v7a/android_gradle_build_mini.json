@@ -1,0 +1,16 @@
+{
+  "buildFiles": [
+    "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/src/main/cpp/CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "/Applications/Unity/Hub/2019.1.14f1/PlaybackEngines/AndroidPlayer/SDK/cmake/3.6.4111459/bin/cmake --build /Users/Sargon/Documents/Unity\\ Projects/Asset\\ Store/NativeTouchAndroidStudio/nativetouch/.cxx/cmake/armRelease/armeabi-v7a --target clean"
+  ],
+  "libraries": {
+    "nativetouche7-Release-armeabi-v7a": {
+      "artifactName": "nativetouche7",
+      "buildCommand": "/Applications/Unity/Hub/2019.1.14f1/PlaybackEngines/AndroidPlayer/SDK/cmake/3.6.4111459/bin/cmake --build /Users/Sargon/Documents/Unity\\ Projects/Asset\\ Store/NativeTouchAndroidStudio/nativetouch/.cxx/cmake/armRelease/armeabi-v7a --target nativetouche7",
+      "abi": "armeabi-v7a",
+      "output": "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/build/intermediates/cmake/armRelease/obj/armeabi-v7a/libnativetouche7.so"
+    }
+  }
+}

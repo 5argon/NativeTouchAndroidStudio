@@ -1,15 +1,16 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 27
     defaultConfig {
+        ndk {
+            abiFilters 'arm64-v8a', 'armeabi-v7a'
+        }
         minSdkVersion 16
-        targetSdkVersion 28
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
     buildTypes {
         release {
@@ -22,13 +23,15 @@ android {
             path 'src/main/cpp/CMakeLists.txt'
         }
     }
-    productFlavors {
-    }
 }
 
 dependencies {
     // Avoid redundant UnityPlayer in final application APK
     compileOnly files('./libs/unityclasses.jar')
+}
+
+afterEvaluate {
+    generateReleaseBuildConfig.enabled = false
 }
 
 android.libraryVariants.all { variant ->
@@ -42,7 +45,7 @@ android.libraryVariants.all { variant ->
 
     //This is my computer but if you wanna use this Gradle script too you can edit the path here
     //so that it output straight to your Unity project.
-    String targetAARFolder = "/Users/Sargon/Documents/Projects/NativeTouch/Assets/NativeTouch/Plugins/Android";
+    String targetAARFolder = "/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouch/Assets/NativeTouch/Plugins/Android";
     String targetAARName = "NativeTouch.aar";
 
     task(deployTaskName, dependsOn: dependencyTaskName, type: Copy) {

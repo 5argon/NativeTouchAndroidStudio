@@ -1,0 +1,3 @@
+/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/rebuild_cache.dir
+/Users/Sargon/Documents/Unity Projects/Asset Store/NativeTouchAndroidStudio/nativetouch/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/nativetouche7.dir
